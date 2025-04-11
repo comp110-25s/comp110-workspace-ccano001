@@ -1,25 +1,23 @@
-"""Introducing user input and named constants"""
+class Point:
+    x: float
+    y: float
 
-SECRET: str = "punk"
+    def __init__(self, x: float, y: float):
+        self.x = x
+        self.y = y
+
+    def __str__(self) -> str:
+        """Magic Method that will print a string representation of"""
+        return f"{self.x},{self.y}"
+
+    def dist_from_origin(self) -> float:
+        return (self.x**2 + self.y**2) ** 0.5
+
+    def translate_x(self, dx: float) -> None:
+        self.x += dx
+
+    def translate_y(self, dy: float) -> None:
+        self.y += dy
 
 
-def guess_secret(word: str, secret: str, idx: int = 0) -> bool:
-    if len(word) != len(secret):
-        print("Words are different lengths")
-        return False
-    if idx < len(word):
-        if word[idx] != secret[idx]:
-            print(f"{word[idx]} isn't the secret word's next letter.")
-            return False
-        else:
-            print(
-                f"{word[idx]} is at index {idx} for both words! Checking next letters..."
-            )
-            return guess_secret(word=word, secret=secret, idx=idx + 1)
-    else:
-        print("They are the same word!")
-        return True
-
-
-print(guess_secret(word=input("What is your word?"), secret=SECRET))
-print(guess_secret(word=input("What is your word?"), secret=SECRET, idx=2))
+pt: Point = Point(2.0, 1.0)
